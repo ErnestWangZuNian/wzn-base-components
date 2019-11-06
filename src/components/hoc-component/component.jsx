@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import preload from './preload';
 import style from './style';
 
-const Component = (params) => {
+const ComponentWrap = (params) => {
   const options = { withRouter: true, ...params };
   const resultComponent = (Component) => {
     let newComponent = Component;
@@ -24,4 +24,4 @@ const Component = (params) => {
 
   return resultComponent;
 };
-export default Component;
+export default ComponentWrap;

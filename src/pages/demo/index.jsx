@@ -1,12 +1,20 @@
-import asyncComponent from '../../components/async-component';
+import { AsyncComponent, Page } from '@/components';
 
-const Show = asyncComponent(() => import('../show'));
+console.log(AsyncComponent, 'wwww');
+
+const Show = AsyncComponent(() => import('../show'));
 const style = require('./style.scss');
 
-style.use();
-
 const { Button } = antd;
-
+@Page({
+  style,
+  preload: async () => {
+    const result = {
+      a: await Api.get('/v2/music/search'),
+    };
+    return result;
+  },
+})
 class App extends React.Component {
   static defaultProps = {};
 

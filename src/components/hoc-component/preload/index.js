@@ -1,3 +1,4 @@
+
 const preload = target => (Component, Loading = '加载中') => class Preload extends React.Component {
   constructor(props) {
     super(props);
