@@ -103,6 +103,7 @@
     "yargs-parser": "^13.1.0"
   },
   "dependencies": {
+    "@loadable/component": "^5.10.3",
     "antd": "^3.15.0",
     "babel-plugin-import": "^1.8.0",
     "babel-plugin-react-css-modules": "^3.3.3",

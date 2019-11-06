@@ -1,0 +1,20 @@
+
+---
+name: AsyncComponent
+---
+
+import { Playground, Props  } from 'docz'
+import AsyncComponent from './index.jsx'
+
+## AsyncComponent
+
+用于项目中 代码分隔 组件异步引入
+
+## 参数列表
+<Props of={AsyncComponent} />
+
+## 基础用法
+
+<Playground>
+ const demo = asyncComponent(() => import('@/pages/demo'))
+</Playground>

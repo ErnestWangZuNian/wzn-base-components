@@ -1,5 +1,6 @@
-import { NumberInput } from '../../components';
+import asyncComponent from '../../components/async-component';
 
+const Show = asyncComponent(() => import('../show'));
 const style = require('./style.scss');
 
 style.use();
@@ -28,14 +29,11 @@ class App extends React.Component {
     const { isFloatNumber } = this.state;
     return (
       <div className="demo-container">
-        <NumberInput
-          isFloatNumber={isFloatNumber}
-          decimalMaxLen={8}
-          maxLen={4}
-          onChange={(e) => {
-            console.log(e, 'ww');
-          }}
-        />
+        <Show />
+        <Show />
+        <Show />
+        <Show />
+        <Show />
         <Button
           type="primary"
           onClick={() => {
