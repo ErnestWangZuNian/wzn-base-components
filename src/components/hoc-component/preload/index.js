@@ -1,4 +1,3 @@
-
 const preload = target => (Component, Loading = '加载中') => class Preload extends React.Component {
   constructor(props) {
     super(props);
@@ -22,7 +21,7 @@ const preload = target => (Component, Loading = '加载中') => class Preload ex
       if (Util.isFunction(target)) {
         newTarget = await target(this.props);
       }
-      if (!Util.isEmoptyObject(newTarget)) {
+      if (newTarget && !Util.isEmoptyObject(newTarget)) {
         Object.keys(newTarget).forEach((key) => {
           promiseResult.push(Promise.resolve(newTarget[key]));
         });

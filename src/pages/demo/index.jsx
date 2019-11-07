@@ -1,13 +1,10 @@
 import { AsyncComponent, Page } from '@/components';
 
-console.log(AsyncComponent, 'wwww');
-
 const Show = AsyncComponent(() => import('../show'));
-const style = require('./style.scss');
 
 const { Button } = antd;
 @Page({
-  style,
+  style: require('./style.scss'),
   preload: async () => {
     const result = {
       a: await Api.get('/v2/music/search'),
@@ -35,6 +32,7 @@ class App extends React.Component {
 
   render() {
     const { isFloatNumber } = this.state;
+    console.log(this.props, '11111');
     return (
       <div className="demo-container">
         <Show />
