@@ -2,9 +2,10 @@ import { AsyncComponent, Page } from '@/components';
 
 const Show = AsyncComponent(() => import('../show'));
 
-const { Button } = antd;
+const { Button, Form, Input } = antd;
 @Page({
   style: require('./style.scss'),
+  form: true,
   preload: async () => {
     const result = {
       a: await Api.get('/v2/music/search'),
@@ -15,7 +16,9 @@ const { Button } = antd;
 class App extends React.Component {
   static defaultProps = {};
 
-  static propTypes = {};
+  static propTypes = {
+    form: PropTypes.object.isRequired,
+  };
 
   constructor(props) {
     super(props);
@@ -32,6 +35,7 @@ class App extends React.Component {
 
   render() {
     const { isFloatNumber } = this.state;
+    const { form } = this.props;
     console.log(this.props, '11111');
     return (
       <div className="demo-container">
@@ -40,6 +44,21 @@ class App extends React.Component {
         <Show />
         <Show />
         <Show />
+
+        <Form.Item>
+          <Input
+            {...form.getFieldProps('name', {
+              rules: [
+                {
+                  required: true,
+                },
+                {
+                  maxlen: 6,
+                },
+              ],
+            })}
+          />
+        </Form.Item>
         <Button
           type="primary"
           onClick={() => {
