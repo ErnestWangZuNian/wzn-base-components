@@ -18,11 +18,11 @@ const juadgeValueisEmpty = (value) => {
 };
 
 //  根据正则创建验证规则
-const createValidatorRules = (key) => {
+const createValidatorRules = (key, current) => {
   const result = {
     validator: (rule, value, callback) => {
       if (!juadgeValueisEmpty(value) && !rules[key].test(value)) {
-        callback(messages[key]);
+        callback(current.messages ? current.messages : messages[key]);
       } else {
         callback();
       }
@@ -50,9 +50,9 @@ const validatorRules = {
       callback();
     }
   }),
-  maxLen: maxCount => transformValidator((rule, value, callback) => {
-    if (!juadgeValueisEmpty(value) && value.length > maxCount) {
-      callback(messages.maxLen);
+  maxLen: current => transformValidator((rule, value, callback) => {
+    if (!juadgeValueisEmpty(value) && value.length > current.maxLen) {
+      callback(current.messages ? current.messages : messages.maxLen);
     } else {
       callback();
     }

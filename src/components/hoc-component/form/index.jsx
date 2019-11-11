@@ -19,7 +19,7 @@ const handleOption = (builtInRules = {}, externalRules) => {
           && builtInRules[itemKey]
           && Util.isFunction(builtInRules[itemKey])
         ) {
-          newItem = { ...builtInRules[itemKey](item[itemKey]) };
+          newItem = { ...builtInRules[itemKey](item) };
         }
       }
       return newItem;
