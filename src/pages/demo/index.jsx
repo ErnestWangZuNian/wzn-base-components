@@ -47,13 +47,14 @@ class App extends React.Component {
 
         <Form.Item>
           <Input
-            {...form.getFieldProps('name', {
+            {...form.getFieldProps('aaaa', {
               rules: [
                 {
                   required: true,
                 },
+                { mobile: true },
                 {
-                  maxlen: 6,
+                  maxLen: 6,
                 },
               ],
             })}
