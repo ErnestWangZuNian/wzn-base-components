@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import preload from './preload';
 import style from './style';
+import formCreate from './form';
 
 const ComponentWrap = (params) => {
   const options = { withRouter: true, ...params };
@@ -11,6 +12,9 @@ const ComponentWrap = (params) => {
     }
     if (options && options.preload) {
       newComponent = preload(options.preload)(newComponent);
+    }
+    if (options && options.form) {
+      newComponent = formCreate({}, newComponent);
     }
     if (options && options.connect) {
       const { mapStateToProps, mapDispatchToProps } = options.connect;

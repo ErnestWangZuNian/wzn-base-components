@@ -1,3 +1,21 @@
+
+---
+name: Page/Component
+---
+
+import { Playground, Props  } from 'docz'
+import Page from './page.jsx'
+
+## Page
+
+Page作为一个高阶组价 里面集成了表单验证 预加载数据 样式分离功能 Page经常用于页面组件 所以带有路由withRouter功能
+Component 则没有路由withRoute功能 其它功能和Page一样
+
+
+## 基础用法
+
+```
+ 
 import { Page } from '@/components';
 
 const { Form, Input } = antd;
@@ -57,3 +75,6 @@ class App extends React.Component {
   }
 }
 export default App;
+
+
+```
