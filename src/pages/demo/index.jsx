@@ -38,6 +38,7 @@ class App extends React.Component {
         <div>
           展示预加载的数据
           {/* {preloadData.musicInfo.count} */}
+          {console.log('测试')}
         </div>
         <Form.Item>
           <Input
