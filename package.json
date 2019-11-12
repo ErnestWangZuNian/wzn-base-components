@@ -25,7 +25,7 @@
     "build:umd": "cross-env npm run clean && webpack --config webpack.prod.js",
     "build:lib": "cross-env OUTPUT_MODULE=commonjs babel src/components -d lib --ignore **/__tests__",
     "build:es": "babel src/components -d es --ignore **/__tests__",
-    "publish": "npm publish --access=public",
+    "publish": "cross-env npm run build && npm publish --access=public",
     "docz:dev": "docz dev",
     "docz:build": "docz build",
     "lint": "eslint --ext .jsx,.js src/"
