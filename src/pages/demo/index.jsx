@@ -3,20 +3,20 @@ import { Page } from '@/components';
 const { Form, Input } = antd;
 @Page({
   style: require('./style.scss'),
+  // preload: async () => {
+  //   const result = {
+  //     musicInfo: await Api.get('/v2/music/search'),
+  //   };
+  //   return result;
+  // },
   form: true,
-  preload: async () => {
-    const result = {
-      a: await Api.get('/v2/music/search'),
-    };
-    return result;
-  },
 })
 class App extends React.Component {
   static defaultProps = {};
 
   static propTypes = {
     form: PropTypes.object.isRequired,
-    preloadData: PropTypes.object.isRequired,
+    // preloadData: PropTypes.object.isRequired,
   };
 
   constructor(props) {
@@ -31,13 +31,13 @@ class App extends React.Component {
   componentWillUnmount() {}
 
   render() {
-    const { form, preloadData } = this.props;
+    const { form } = this.props;
     return (
       <div className="demo-container">
         <div>表单高阶组件 内置通用验证规则</div>
         <div>
           展示预加载的数据
-          {preloadData.a}
+          {/* {preloadData.musicInfo.count} */}
         </div>
         <Form.Item>
           <Input
@@ -47,7 +47,7 @@ class App extends React.Component {
                 {
                   required: true,
                 },
-                { mobile: true },
+                'mobile',
               ],
             })}
           />

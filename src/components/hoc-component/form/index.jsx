@@ -8,7 +8,7 @@ const handleOption = (builtInRules = {}, externalRules) => {
     newExternalRules = newExternalRules.map((item) => {
       let newItem = { ...item };
       if (Util.isString(item) && Util.isFunction(builtInRules[item])) {
-        newItem = builtInRules[item];
+        newItem = { ...builtInRules[item]({ [item]: true }) };
       }
       if (Util.isObject(item)) {
         const itemKeys = Object.keys(item);
@@ -35,7 +35,7 @@ const formCreate = (options, Component) => {
     fieldMetaProp: FIELD_META_PROP,
     fieldDataProp: FIELD_DATA_PROP,
   })((props) => {
-    const { form, moreProps } = props;
+    const { form, ...moreProps } = props;
     const { getFieldProps, getFieldDecorator } = form;
     const $getFieldProps = (id, opts) => {
       const finalResult = getFieldProps(id, {
