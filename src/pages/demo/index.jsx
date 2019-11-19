@@ -1,4 +1,7 @@
 import { Page } from '@/components';
+import Validator from './validator';
+
+console.log(Validator, 'wwww');
 
 const { Form, Input } = antd;
 @Page({
@@ -21,6 +24,7 @@ class App extends React.Component {
 
   constructor(props) {
     super(props);
+    this.validator = new Validator();
     this.state = {};
   }
 
@@ -52,6 +56,14 @@ class App extends React.Component {
               ],
             })}
           />
+          {console.log(
+            this.validator.validate('aaaa', '8888121212111', [
+              {
+                maxLen: 8,
+                message: '自定义message',
+              },
+            ]),
+          )}
         </Form.Item>
       </div>
     );
