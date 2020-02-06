@@ -1,12 +1,13 @@
 import { HashRouter, Route, Switch } from 'react-router-dom';
-import asyncComponent from '@/components/async-component';
+import loadable from '@loadable/component';
+// import asyncComponent from '@/components/async-component/index.jsx';
 
-const Demo = asyncComponent(() => import('@/pages/demo'));
-
+const Demo = loadable(() => import('@/pages/demo'));
+console.log(Demo, 'www');
 const Router = (
   <HashRouter>
     <Switch>
-      <Route path="/" exact component={Demo} />
+      <Route path="/app" component={Demo} />
     </Switch>
   </HashRouter>
 );

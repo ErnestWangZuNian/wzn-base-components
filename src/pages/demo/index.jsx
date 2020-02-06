@@ -1,9 +1,16 @@
+
+/* eslint-disable */
 import { Page } from '@/components';
 import Validator from './validator';
+import { Route, Switch } from 'react-router-dom';
+import asyncComponent from '@/components/async-component/index.jsx';
+
+const Test = asyncComponent(() => import('@/pages/test'), '加载中');
+const TestOne = asyncComponent(() => import('@/pages/test1'));
 
 console.log(Validator, 'wwww');
 
-const { Form, Input } = antd;
+const { Form, Input, Button } = antd;
 @Page({
   style: require('./style.scss'),
   // preload: async () => {
@@ -28,16 +35,22 @@ class App extends React.Component {
     this.state = {};
   }
 
-  componentDidMount() {}
+  componentDidMount() { }
 
-  componentDidUpdate() {}
+  componentDidUpdate() { }
 
-  componentWillUnmount() {}
+  componentWillUnmount() { }
 
   render() {
     const { form } = this.props;
     return (
       <div className="demo-container">
+        <Button onClick={() => {
+          this.props.history.push('/app/test');
+        }}>test</Button>
+        <Button onClick={() => {
+          this.props.history.push('/app/test1');
+        }}>test1</Button>
         <div>表单高阶组件 内置通用验证规则</div>
         <div>
           展示预加载的数据
@@ -65,6 +78,10 @@ class App extends React.Component {
             ]),
           )}
         </Form.Item>
+        <Switch>
+          <Route path="/app/test" component={Test} />
+          <Route path="/app/test1" component={TestOne} />
+        </Switch>
       </div>
     );
   }

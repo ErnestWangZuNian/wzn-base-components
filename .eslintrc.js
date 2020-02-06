@@ -1,6 +1,16 @@
+const path = require('path');
 module.exports = {
-  extends: 'airbnb',
-  plugins: ['react'],
+  extends: "airbnb",
+  plugins: ["react"],
+  settings: {
+    "import/resolver": {
+      alias: {
+        map: [
+          ['@', path.resolve(__dirname, 'src')],
+        ]
+      }
+    }
+  },
   env: {
     browser: true,
     node: true,
@@ -15,16 +25,16 @@ module.exports = {
     Api: true,
     require: true,
   },
-  parser: 'babel-eslint',
+  parser: "babel-eslint",
   rules: {
-    'global-require': 0,
-    'import/no-unresolved': 0,
-    'no-console': 0,
-    'import/no-dynamic-require': 0,
-    'import/prefer-default-export': 'off',
-    'linebreak-style': [0, 'error', 'windows'],
-    'react/jsx-filename-extension': ['error', { extensions: ['.js', '.jsx'] }],
-    'react/forbid-prop-types': 0,
-    'react/sort-comp': 0,
+    "global-require": 0,
+    "import/no-unresolved": 0,
+    "no-console": 0,
+    "import/no-dynamic-require": 0,
+    "import/prefer-default-export": "off",
+    "linebreak-style": [0, "error", "windows"],
+    "react/jsx-filename-extension": ["error", { extensions: [".js", ".jsx"] }],
+    "react/forbid-prop-types": 0,
+    "react/sort-comp": 0,
   },
 };
