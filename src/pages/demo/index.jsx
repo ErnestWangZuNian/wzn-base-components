@@ -1,8 +1,6 @@
-
-/* eslint-disable */
+import { Route, Switch } from 'react-router-dom';
 import { Page } from '@/components';
 import Validator from './validator';
-import { Route, Switch } from 'react-router-dom';
 import asyncComponent from '@/components/async-component/index.jsx';
 
 const Test = asyncComponent(() => import('@/pages/test'), '加载中');
@@ -26,6 +24,7 @@ class App extends React.Component {
 
   static propTypes = {
     form: PropTypes.object.isRequired,
+    history: PropTypes.object.isRequired,
     // preloadData: PropTypes.object.isRequired,
   };
 
@@ -35,22 +34,30 @@ class App extends React.Component {
     this.state = {};
   }
 
-  componentDidMount() { }
+  componentDidMount() {}
 
-  componentDidUpdate() { }
+  componentDidUpdate() {}
 
-  componentWillUnmount() { }
+  componentWillUnmount() {}
 
   render() {
-    const { form } = this.props;
+    const { form, history } = this.props;
     return (
       <div className="demo-container">
-        <Button onClick={() => {
-          this.props.history.push('/app/test');
-        }}>test</Button>
-        <Button onClick={() => {
-          this.props.history.push('/app/test1');
-        }}>test1</Button>
+        <Button
+          onClick={() => {
+            history.push('/app/test');
+          }}
+        >
+          test
+        </Button>
+        <Button
+          onClick={() => {
+            history.push('/app/test1');
+          }}
+        >
+          test1
+        </Button>
         <div>表单高阶组件 内置通用验证规则</div>
         <div>
           展示预加载的数据
@@ -69,14 +76,6 @@ class App extends React.Component {
               ],
             })}
           />
-          {console.log(
-            this.validator.validate('aaaa', '8888121212111', [
-              {
-                maxLen: 8,
-                message: '自定义message',
-              },
-            ]),
-          )}
         </Form.Item>
         <Switch>
           <Route path="/app/test" component={Test} />
