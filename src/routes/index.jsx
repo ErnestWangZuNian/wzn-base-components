@@ -5,7 +5,7 @@ const Demo = asyncComponent(() => import('@/pages/demo'));
 const Router = (
   <HashRouter>
     <Switch>
-      <Route path="/app" component={Demo} />
+      <Route path="/" component={Demo} />
     </Switch>
   </HashRouter>
 );

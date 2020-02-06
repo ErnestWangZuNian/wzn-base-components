@@ -1,7 +1,7 @@
 const path = require("path");
 module.exports = {
   extends: "airbnb",
-  plugins: ["react", "prettier"],
+  plugins: ["react"],
   settings: {
     "import/resolver": {
       alias: {
@@ -25,7 +25,6 @@ module.exports = {
   },
   parser: "babel-eslint",
   rules: {
-    "prettier/prettier": "error",
     "global-require": 0,
     "import/no-unresolved": 0,
     "no-console": 0,

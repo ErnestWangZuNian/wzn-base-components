@@ -46,14 +46,14 @@ class App extends React.Component {
       <div className="demo-container">
         <Button
           onClick={() => {
-            history.push('/app/test');
+            history.push('/test');
           }}
         >
           test
         </Button>
         <Button
           onClick={() => {
-            history.push('/app/test1');
+            history.push('/test1');
           }}
         >
           test1
