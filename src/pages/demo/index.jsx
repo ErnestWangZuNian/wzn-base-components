@@ -3,7 +3,7 @@ import { Page } from '@/components';
 import Validator from './validator';
 import asyncComponent from '@/components/async-component/index.jsx';
 
-const Test = asyncComponent(() => import('@/pages/test'), '加载中');
+const Test = asyncComponent(() => import('@/pages/test'));
 const TestOne = asyncComponent(() => import('@/pages/test1'));
 
 console.log(Validator, 'wwww');
