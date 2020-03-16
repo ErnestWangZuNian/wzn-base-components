@@ -1,7 +1,8 @@
 import { Route, Switch } from 'react-router-dom';
 import { Page } from '@/components';
-import Validator from './validator';
 import asyncComponent from '@/components/async-component/index.jsx';
+import Validator from './validator';
+
 
 const Test = asyncComponent(() => import('@/pages/test'));
 const TestOne = asyncComponent(() => import('@/pages/test1'));

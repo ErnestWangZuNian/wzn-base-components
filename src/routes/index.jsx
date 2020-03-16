@@ -1,5 +1,5 @@
 import { HashRouter, Route, Switch } from 'react-router-dom';
-import { AsyncComponent } from '../../dist/index';
+import { AsyncComponent } from '../../lib/index';
 
 const Demo = AsyncComponent(() => import('@/pages/demo'));
 const Router = (

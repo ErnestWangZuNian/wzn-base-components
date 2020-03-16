@@ -1,18 +1,39 @@
 const env = process.env.BABEL_ENV || process.env.NODE_ENV;
 const outputModule = process.env.OUTPUT_MODULE;
 
+let babel_env = process.env["BABEL_ENV"];
+let loose = false,
+  modules = false,
+  useESModules = false;
+
+switch (babel_env) {
+  case "commonjs":
+    loose = true;
+    modules = "cjs";
+    useESModules = false;
+    break;
+  case "es":
+    loose = true;
+    modules = false;
+    useESModules = true;
+    break;
+  case "umd":
+    loose = false;
+    modules = false;
+    useESModules = false;
+    break;
+}
+
 module.exports = {
   presets: [
     [
       "@babel/preset-env",
-      {
-        modules: outputModule || false
-      }
+      { loose, modules }
     ],
     "@babel/preset-react"
   ],
   plugins: [
-    "@babel/plugin-transform-runtime",
+    ["@babel/plugin-transform-runtime", { useESModules }],
     [
       "@babel/plugin-proposal-decorators",
       {
@@ -21,6 +42,5 @@ module.exports = {
     ],
     "@babel/plugin-proposal-class-properties",
     "@babel/plugin-proposal-object-rest-spread",
-    env === "test" && "@babel/plugin-transform-modules-commonjs"
-  ].filter(Boolean)
+  ]
 };
