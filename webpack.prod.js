@@ -81,6 +81,24 @@ module.exports = merge(common, {
       commonjs: 'react',
       amd: 'react',
     },
+    antd: {
+      root: 'antd',
+      commonjs2: 'antd',
+      commonjs: 'antd',
+      amd: 'antd',
+    },
+    moment: {
+      root: 'moment',
+      commonjs2: 'moment',
+      commonjs: 'moment',
+      amd: 'moment',
+    },
+    redux: {
+      root: 'redux',
+      commonjs2: 'redux',
+      commonjs: 'redux',
+      amd: 'redux',
+    },
     'react-dom': {
       root: 'ReactDOM',
       commonjs2: 'react-dom',
@@ -99,17 +117,11 @@ module.exports = merge(common, {
       commonjs: 'prop-types',
       amd: 'prop-types',
     },
-    antd: {
-      root: 'antd',
-      commonjs2: 'antd',
-      commonjs: 'antd',
-      amd: 'antd',
-    },
-    moment: {
-      root: 'moment',
-      commonjs2: 'moment',
-      commonjs: 'moment',
-      amd: 'moment',
+    'react-redux': {
+      root: 'reactRedux',
+      commonjs2: 'react-redux',
+      commonjs: 'react-redux',
+      amd: 'react-redux',
     },
   },
   plugins: [
