@@ -1,6 +1,3 @@
-const env = process.env.BABEL_ENV || process.env.NODE_ENV;
-const outputModule = process.env.OUTPUT_MODULE;
-
 let babel_env = process.env["BABEL_ENV"];
 let loose = false,
   modules = false,
