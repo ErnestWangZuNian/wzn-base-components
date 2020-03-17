@@ -2,9 +2,37 @@ const merge = require('webpack-merge');
 const path = require('path');
 const ParallelUglifyPlugin = require('webpack-parallel-uglify-plugin');
 const ModuleConcatPlugin = require('webpack/lib/optimize/ModuleConcatenationPlugin');
+const fs = require('fs');
 const common = require('./webpack.common.js');
 
 const resolve = dir => path.resolve(__dirname, dir);
+
+//  获取入口
+const getEntry = (componentsPath) => {
+  const componentsDir = fs.readdirSync(resolve(componentsPath));
+  const files = {};
+  // 递归遍历
+  const getFiles = (dirs, currentPath, currentDir) => {
+    dirs.forEach((item) => {
+      const statPath = resolve(`${currentPath}/${item}`);
+      const fsStat = fs.statSync(statPath);
+      if (fsStat.isDirectory(item)) {
+        const newDirs = fs.readdirSync(statPath);
+        getFiles(newDirs, statPath, currentDir ? `${currentDir}\\${item}` : item);
+      } else if (item.match(/\.js[x]?$/g)) {
+        const newItem = item.replace(/\.js[x]?$/, '');
+        if (currentDir) {
+          files[`${currentDir}\\${newItem}`] = resolve(`${currentPath}/${item}`);
+        } else {
+          files[newItem] = resolve(`${currentPath}/${item}`);
+        }
+      }
+    });
+  };
+  getFiles(componentsDir, componentsPath);
+  return files;
+};
+
 
 module.exports = merge(common, {
   mode: 'production',
@@ -31,6 +59,20 @@ module.exports = merge(common, {
         },
       }),
     ],
+    // splitChunks: {// 可以在这里直接设置抽离代码的参数，最后将符合条件的代码打包至一个公共文件
+    //   cacheGroups: {// 设置缓存组用来抽取满足不同规则的chunk,下面以生成common、vender为例
+    //     // 根据不同的参数设置抽取不同条件的公共js
+    //     common: {//
+    //       name: 'common',
+    //       // test: /[^index.js]/,
+    //       chunks: 'all',
+    //       minSize: 1,
+    //       minChunks: 2,
+    //       priority: 1, // 设置匹配优先级，数字越小，优先级越低
+    //     },
+    //   },
+    // },
+
   },
   externals: {
     react: {
@@ -73,9 +115,7 @@ module.exports = merge(common, {
   plugins: [
     new ModuleConcatPlugin(),
   ],
-  entry: {
-    index: resolve('src/components'),
-  },
+  entry: { vendor: ['wzn-utils'], ...getEntry('src/components') },
   output: {
     filename: '[name].js',
     path: resolve('dist'),
