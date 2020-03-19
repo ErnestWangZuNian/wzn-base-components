@@ -47,7 +47,12 @@ class App extends React.Component {
       <div className="demo-container">
         <Button
           onClick={() => {
-            history.push('/test');
+            form.validateFields((err, values) => {
+              if (!err) {
+                console.log(values, 'www');
+                history.push('/test');
+              }
+            });
           }}
         >
           test
@@ -65,17 +70,10 @@ class App extends React.Component {
           {/* {preloadData.musicInfo.count} */}
           {console.log('测试')}
         </div>
-        <Form.Item>
+        <Form.Item label="手机号码">
           <Input
             placeholder="手机号码输入框"
-            {...form.getFieldProps('aaaa', {
-              rules: [
-                {
-                  required: true,
-                },
-                'mobile',
-              ],
-            })}
+            {...form.getFieldProps('aaaa')}
           />
         </Form.Item>
         <Switch>

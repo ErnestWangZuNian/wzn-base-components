@@ -38,16 +38,28 @@ const formCreate = (options, Component) => {
     const { form, ...moreProps } = props;
     const { getFieldProps, getFieldDecorator } = form;
     const $getFieldProps = (id, opts) => {
+      let rules = [];
+      if (opts && opts.rules) {
+        if (Util.isArray(opts.rules) && opts.rules.length) {
+          rules = [].concat(opts.rules);
+        }
+      }
       const finalResult = getFieldProps(id, {
         ...opts,
-        rules: handleOption(validatorRules, opts.rules),
+        rules: handleOption(validatorRules, rules),
       });
       return finalResult;
     };
     const $getFieldDecorator = (id, opts) => {
+      let rules = [];
+      if (opts && opts.rules) {
+        if (Util.isArray(opts.rules) && opts.rules.length) {
+          rules = [].concat(opts.rules);
+        }
+      }
       const finalResult = getFieldDecorator(id, {
         ...opts,
-        rules: handleOption(validatorRules, opts.rules),
+        rules: handleOption(validatorRules, rules),
       });
       return finalResult;
     };
